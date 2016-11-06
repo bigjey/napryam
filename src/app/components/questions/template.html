@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="pull-right"><a href="" class="btn btn-success" ng-click="$ctrl.openModal();"><i class="fa fa-plus"></i> Add question</a></div>
+  <h2>Questions:</h2>
+
+  <div ng-if="$ctrl.fetching"><i class="fa fa-spinner fa-spin fa-2x"></i> Loading data</div>
+
+  <div ng-if="!$ctrl.fetching">
+
+    <uib-tabset>
+
+      <uib-tab>
+        <uib-tab-heading>All</uib-tab-heading>
+        <ul>
+          <li ng-repeat="item in $ctrl.items">
+            <h4>{{item.text}}</h4>
+            <a href="" class="btn btn-xs btn-danger" ng-click="$ctrl.removeOne(item._id)"><i class="fa fa-remove"></i> Remove</a>
+          </li>
+        </ul>
+      </uib-tab>
+
+      <uib-tab>
+        <uib-tab-heading>New</uib-tab-heading>
+        <ul>
+          <li ng-repeat="item in $ctrl.items | filter:{status:'New'}">
+            <h4>{{item.text}}</h4>
+            <a href="" class="btn btn-xs btn-danger" ng-click="$ctrl.removeOne(item._id)"><i class="fa fa-remove"></i> Remove</a>
+          </li>
+        </ul>
+      </uib-tab>
+
+      <uib-tab>
+        <uib-tab-heading>Accepted</uib-tab-heading>
+        <ul>
+          <li ng-repeat="item in $ctrl.items | filter:{status:'Accepted'}">
+            <h4>{{item.text}}</h4>
+            <a href="" class="btn btn-xs btn-danger" ng-click="$ctrl.removeOne(item._id)"><i class="fa fa-remove"></i> Remove</a>
+          </li>
+        </ul>
+      </uib-tab>
+
+      <uib-tab>
+        <uib-tab-heading>Rejected</uib-tab-heading>
+        <ul>
+          <li ng-repeat="item in $ctrl.items | filter:{status:'Rejected'}">
+            <h4>{{item.text}}</h4>
+            <a href="" class="btn btn-xs btn-danger" ng-click="$ctrl.removeOne(item._id)"><i class="fa fa-remove"></i> Remove</a>
+          </li>
+        </ul>
+      </uib-tab>
+
+    </uib-tabset>
+
+
+  </ul>
+
+  <div ng-if="$ctrl.items.length === 0">
+    No items.
+  </div>
+  
+</div>
